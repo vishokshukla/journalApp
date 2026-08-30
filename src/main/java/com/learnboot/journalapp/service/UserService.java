@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 @Slf4j
 public class UserService {
 
@@ -30,16 +31,17 @@ public class UserService {
         return userRepository.save(entry);
     }
 
-    public User saveNewUser(User entry) {
+    public boolean saveNewUser(User entry) {
         try {
             entry.setPassword(passwordEncoder.encode(entry.getPassword()));
             entry.setRoles(Arrays.asList("USER"));
-            return userRepository.save(entry);
+            userRepository.save(entry);
+            return true;
         } catch (Exception e) {
             log.error("Error saving user");
             log.warn("warn saving user");
             log.info("info saving user");
-            return null;
+            return false;
         }
     }
 

@@ -13,7 +13,7 @@ public class PublicController {
     private UserService userService;
 
     @PostMapping("/create-user")
-    public User createUser(@RequestBody User user) {
+    public boolean createUser(@RequestBody User user) {
         return userService.saveNewUser(user);
     }
 

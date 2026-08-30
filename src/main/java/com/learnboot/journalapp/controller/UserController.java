@@ -1,11 +1,13 @@
 package com.learnboot.journalapp.controller;
 
+import com.learnboot.journalapp.api.response.MiniWeatherResponse;
 import com.learnboot.journalapp.entity.JournalEntry;
 import com.learnboot.journalapp.entity.User;
 import com.learnboot.journalapp.repository.UserRepository;
 import com.learnboot.journalapp.service.JournalEntryService;
 
 import com.learnboot.journalapp.service.UserService;
+import com.learnboot.journalapp.service.WeatherService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private WeatherService weatherService;
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
@@ -48,6 +53,18 @@ public class UserController {
         String username = authentication.getName();
         userRepository.deleteByUsername(username);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping
+    public ResponseEntity<?> greetings() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        MiniWeatherResponse weatherResponse = weatherService.getWeather("Lucknow");
+        String greeting = "";
+        if (weatherResponse != null) {
+            greeting = ", Weather feels like " + weatherResponse.getCurrent().getFeelslike();
+        }
+        return new ResponseEntity<>("Hi " + username + greeting, HttpStatus.OK);
     }
 
 }
