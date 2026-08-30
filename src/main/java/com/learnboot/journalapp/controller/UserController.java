@@ -8,6 +8,7 @@ import com.learnboot.journalapp.service.JournalEntryService;
 
 import com.learnboot.journalapp.service.UserService;
 import com.learnboot.journalapp.service.WeatherService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name="User Apis", description = "Read/Update/Delete User")
 public class UserController {
 
     @Autowired

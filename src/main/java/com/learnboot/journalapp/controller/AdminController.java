@@ -3,6 +3,7 @@ package com.learnboot.journalapp.controller;
 import com.learnboot.journalapp.cache.AppCache;
 import com.learnboot.journalapp.entity.User;
 import com.learnboot.journalapp.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@Tag(name="Administrator Apis", description = "Just Admin Things")
 public class AdminController {
 
     @Autowired
