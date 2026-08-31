@@ -22,6 +22,14 @@ spring:
           starttls:
             enable: true
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${OAUTH_CLIENTID}
+            client-secret: ${OAUTH_CLIENTSECRET}
+
 
 
   kafka:
