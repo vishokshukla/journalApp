@@ -2,7 +2,6 @@ package com.learnboot.journalapp.config;
 
 import com.learnboot.journalapp.filter.JwtFilter;
 import com.learnboot.journalapp.service.UserDetailsServiceImpl;
-import com.learnboot.journalapp.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
